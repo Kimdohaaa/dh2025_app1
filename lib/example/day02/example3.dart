@@ -1,5 +1,5 @@
 void main(){
-  // *** p.73 ~ p.85 *** //
+  // *** p.73 ~ p.84 *** //
   // [1] if-else
   int number1 = 31;
   if(number1 % 2 == 1){
