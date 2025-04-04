@@ -47,8 +47,7 @@ void postHttp() async {
 
     // 2-2) dio 함수를 통해 자바와 통신
     final response
-    = await dio.post("http://localhost:8080/day03/task",
-        data: sendData); // Spring 의 day03/_day03과제와 통신
+    = await dio.post("http://localhost:8080/day03/task", data : sendData); // Spring 의 day03/_day03과제와 통신
 
     // 2-3) 응답확인
     print(response.data);
