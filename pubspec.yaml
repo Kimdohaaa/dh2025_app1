@@ -28,6 +28,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  # 비동기 HTTP 통신 라이브러리 추가
+  dio: ^5.8.0+1
+
+  # 플러터 SDK 라이브러리 추가
   flutter:
     sdk: flutter
 
@@ -38,6 +42,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

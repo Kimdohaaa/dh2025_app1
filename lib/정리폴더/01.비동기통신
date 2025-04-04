@@ -1,0 +1,38 @@
+※ JS : fetch 내장 함수를 이용한 HTTP REST 자바(톰캣) 통신
+※ React : axios 함수를 이용한 HTTP REST 자바(톰캣) 통신
+※ 플러터 : dio(JSON 자동 타입 변환 지원) / http(JSON 자동 타입 변환 X) 함수를 이용한 HTTP REST 자바(톰캣) 통신
+    -> 수업 기준 dio 함수 사용!
+
+[dio 설치]
+1. https://pub.dev/packages?q=platform%3Aandroid
+2. dio 검색
+3. [Installing] 클릭
+4. This will add a line like this to your package's pubspec.yaml (and run an implicit dart pub get):
+    하단의 코드 복사
+    -> 수업 기준 5.8.0+1 버전
+5. pubspec.yaml(== 스프링의 build.gradle) 에서 dependencies 블록 찾기
+    ★ .yaml 확장자 파일은 tab 을 통한 구분 처리함 (!!! spaceBar 불가 !!!) ★
+    예] dev_dependencies:
+         flutter_test:
+           sdk: flutter
+4. 복사한 코드 붙여 넣기 => dependencies 에 추가하는 것이 때문에 들여쓰기 주의
+    dependencies:
+      # 비동기 HTTP 통신 라이브러리 추가
+      dio: ^5.8.0+1
+
+      # 플러터 SDK 라이브러리 추가
+      flutter:
+        sdk: flutter
+5. 오른쪽 상단 pub Get(== 스프링의 코끼리) 을 눌러 적용 시키기
+
+
+[dio 사용법]
+1. 파일 상단에 import 하기 : import 'package:dio/dio.dart';
+2. Dio 객체 생성 : final dio = Dio();
+3. HTTP REST 통신 (GET/POST/PUT/DELETE)
+    -> GET/DELETE : dio.HTTP메소드명("URL");
+    -> POST/PUT : dio.HTTP메소드명("URL", data : 보낼BODY자료);
+
+※ queryString 보내기 : URL?Key=$변수명&Key=$값 ※
+※ 동기화 방법 : async 키워드와 await 키워드 사용 (JS와 동일) ※
+
