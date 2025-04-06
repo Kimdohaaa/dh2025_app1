@@ -1,0 +1,39 @@
+[위젯(Widget)]
+- 정의
+    1) 화면을 구성하는 요소 (== React 의 컴포넌트 == HTML 마크업)
+    2) UI 를 구성하는 최소 단위
+- 목적 : 여러 개의 위젯을 조립하여 하나의 화면/앱을 생성하기 위함(모듈화)
+
+[StatelessWidget / StatefulWidget]
+1. StatelessWidget(상태X) : 고정화면을 만드는 기본 위젯을 제공하는 클래스
+2. StatefulWidget(상태O) : 변하는 화면을 만드는 기본 위젯을 제공하는 클래스
+
+※ 공통점 ※
+.build() : 플러터에서 UI(함수)를 그리는 함수 (== react 의 .render()) => 추상메소드
+    -> 개발자가 .build() 의 return 을 재정의하여 화면에 출력할 위젯을 작성
+
+
+[대표 위젯]
+1. MaterialApp : 앱의 전체 위젯들의 틀을 정의하는 최상위 위젯
+2. Scaffold : 플러터에서 제공하는 가장 기본적인 앱의 레이아웃(헤더/메인/푸터 등)을 잡는 위젯
+    -> 형식 : Scaffold(
+                위젯명 : 위젯클래스()
+             )
+    -> 주의점 : 위젯명은 Scaffold 클래스가 제공하는 위젯명만 사용 가능
+3. AppBar : 상단 메뉴
+4. Body : 본문 메뉴
+5. BottomAppBar : 하단 메뉴
+6. Center : 가로/세로 가운데 정렬
+7. Text : 가장 기본적인 텍스트 출력 위젯
+
+
+[플러터의 기본 실행 조건]
+1. void main(){ runApp(클래스명()) }
+2. class 클래스명 extends StatelessWidget/StatefulWidget {
+        @Override
+        Widget build(BuildContext context){
+            return 생성할 위젯 코드;
+        }
+   }
+
+※ 다양한 위젯 제공 홈페이지 : https://flutter.dev/ ※
