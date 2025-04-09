@@ -58,7 +58,7 @@
     -> 테마 설정 예] 다크 모드 중
     -> 초기화 경로 설정
     <형식>
-    MeterialApp(
+    MaterialApp(
         initialRoute : "경로" // 초기화 경로 설정
         routes : { // 라우터 경로 설정
             "경로" : (context) => 위젯명(),
@@ -82,9 +82,9 @@
     -> 형식 : Center(child : 위젯명())
 3. Column() : 하위 모든 요소들을 세로 배치
     -> children : [위젯명(), 위젯명()]
-9. TextButton() : 텍스트 버튼을 제공하는 위젯
-10. Expanded() : Column() 위젯이 출력에 사용하고 남은 공간을 모두 채워주는 위젯
-11. ListVIew() : 스크롤이 가능한 목록(리스트) 위젯 (== HTML 의 ol, ul)
+4. TextButton() : 텍스트 버튼을 제공하는 위젯
+5. Expanded() : Column() 위젯이 출력에 사용하고 남은 공간을 모두 채워주는 위젯
+6. ListVIew() : 스크롤이 가능한 목록(리스트) 위젯 (== HTML 의 ol, ul)
 
 [플러터의 기본 실행 조건]
 1. void main(){ runApp(클래스명()) }
