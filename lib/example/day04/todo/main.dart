@@ -2,6 +2,8 @@
 import 'package:dh2025_app1/example/day04/todo/home.dart';
 import 'package:dh2025_app1/example/day04/todo/update.dart';
 import 'package:dh2025_app1/example/day04/todo/write.dart';
+import 'package:dh2025_app1/example/day04/todo/detail.dart';
+
 import 'package:flutter/material.dart';
 
 // [1] main 함수 이용한 앱 실행
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget{
       routes: { // 2) 각 클래스의 라우터 경로 설정
         "/" : (context) => Home(), // 만약 "/" 경로 호출 시 Home() 클래스 오픈
         "/write" : (context) => Write(),
+        "/detail" : (context) => Detail(),
         "/update" : (context) => Update()
       },
     );

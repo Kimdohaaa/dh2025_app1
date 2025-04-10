@@ -104,11 +104,34 @@ class _HomeState extends State<Home>{
                             // 객체의 Key의 value 출력 시 : "문자열 ${변수명['key']}"
                           ],
                         ),
+
+
                         trailing: // trailing : ListTile 오른 쪽 끝에 표시되는 위젯
-                          IconButton( // IconButton() : 아이콘 버튼을 출력하는 위젯
-                              onPressed: () => {todoDelete(todo['id'])}, // PK 키를 삭제 메소드에게 매개변수로 전달
-                              icon: Icon(Icons.delete)
-                          ),
+                          Row( // Row() : 하위 위젯 가로 배치
+                            mainAxisSize : MainAxisSize.min, // trailing 하위 위젯의 사이지를 자동으로 할당
+                            children: [
+
+                              // #. 수정 버튼
+                              IconButton(
+                                  onPressed: () => {Navigator.pushNamed(context, "/update", arguments: todo['id'])},
+                                  icon: Icon(Icons.edit)
+                              ),
+
+                              // #. 상세 보기 버튼
+                              IconButton(
+                                  // => 상세보기 버튼 클릭 시 "/detail" 경로로 이동 / 해당 경로에 todoList 의 'id'를 매개변수로 보냄
+                                  onPressed: () => {Navigator.pushNamed(context, "/detail", arguments: todo['id'])},
+                                  icon: Icon( Icons.info)
+                              ),
+
+                              // #. 삭제 버튼
+                              IconButton( // IconButton() : 아이콘 버튼을 출력하는 위젯
+                                  onPressed: () => {todoDelete(todo['id'])}, // PK 키를 삭제 메소드에게 매개변수로 전달
+                                  icon: Icon(Icons.delete)
+                              )
+
+                            ]
+                          )
                       ),
                       );
                     }).toList()
