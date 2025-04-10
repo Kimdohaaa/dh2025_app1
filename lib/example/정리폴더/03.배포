@@ -1,0 +1,24 @@
+안드로이드 : apk 확장자로 파일 만들기
+방법1
+    1. 현재 프로젝트명 오른쪽 클릭 -> [terminal] 창 열기
+    2. flutter build apk --release --target=lib/example/day04/todo/main.dart --target-platform=android-arm64
+    => target 생략 시 자동으로 lib 에 가장 가까운 경로에 있는 main.dart 파일이 빌드됨
+방법2
+    상단메뉴 -> [build] -> [flutter] -> [apk]
+
+※ 완료 시 터미널에 출력된 경로(√ Built build\app\outputs\flutter-apk\app-release.apk (18.0MB))의 폴더를 통해
+   휴대폰에서 실행 / 스토어에 배포 가능
+※ 안드로이드에서 apk 실행 시 https 가 적용이 안되는 경우 (IOS 는 필요없음!)
+   [android] -> [src] -> [main] -> AndroidManifest.xml
+   에서
+       <uses-permission android:name="android.permission.INTERNET"/>
+       코드를 통해 HTTPS 권한 설정하기
+   -> 다시 빌드
+
+
+IOS : ipa 확장자로 파일 만들기 -> 보안상 스토어 등록 후 사용 가능
+-> MAC 에서만 가능
+1. 현재 프로젝트명 오른쪽 클릭 -> [terminal] 창 열기
+2. flutter build ios --release --target=lib/example/day04/todo/main.dart --target-platform=android-arm64
+=> target 생략 시 자동으로 lib 에 가장 가까운 경로에 있는 main.dart 파일이 빌드됨
+

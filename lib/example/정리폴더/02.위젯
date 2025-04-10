@@ -73,7 +73,13 @@
     1) 헤더 : appbar : AppBar(위젯명())
     2) 바디 : body : 위젯명()
     3) 푸터 : bottomNavigationBar: BottomAppBar()
-3. Navigator.pushNamed(context, "경로") : 이벤트로 특정 경로 호출
+3. Navigator.pushNamed(context, "경로", argumentes : 경로로전달할인자값) : 이벤트로 특정 경로 호출
+    => 라우터를 통해 보낸 값을 가져오는 방법 : 타입 변수명 = ModalRoute.of(context)!.settings.arguments as 인자값의 타입;
+                -> ModalRoute : 라이터가 화면 전환 시 사용되는 객체
+                -> .of(context) : 위젯 트리에서 현재 위젯의 위치
+                -> !.settings.arguments : 부모 위젯으로부터 전달받응ㄴ 매개변수를 반환
+                -> as 인자값의 타입 : 가져올 인자값의 타입 지정
+
 4. Navigator.pop(context) : 이벤트로 이전 경로 호출
 
 [일반 주요 위젯]
@@ -85,6 +91,12 @@
 4. TextButton() : 텍스트 버튼을 제공하는 위젯
 5. Expanded() : Column() 위젯이 출력에 사용하고 남은 공간을 모두 채워주는 위젯
 6. ListVIew() : 스크롤이 가능한 목록(리스트) 위젯 (== HTML 의 ol, ul)
+7. TextField() : 텍스트 입력 위젯
+    -> maxLength : 입력 텍스트의 최대 길이 설정
+    -> maxLines : 최대 입력 줄 수 제한 (입력에 따라 자동 확장됨)
+8. SizedBox() : 빈공간을 만드는 위젯
+    -> height : 높이 설정
+
 
 [플러터의 기본 실행 조건]
 1. void main(){ runApp(클래스명()) }
