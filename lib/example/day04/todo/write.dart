@@ -32,7 +32,7 @@ class _WriteState extends State<Write>{
       };
 
       // (2) 자바와 통신
-      final response = await dio.post("http://192.168.40.34:8080/day04/todos", data: sendData);
+      final response = await dio.post("https://open-bendite-tjoeun-02a1a58d.koyeb.app/day04/todos", data: sendData);
 
       // (3) 반환값에 따른 처리
       if(response.data != null){

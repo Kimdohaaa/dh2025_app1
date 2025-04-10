@@ -30,7 +30,7 @@ class _HomeState extends State<Home>{
     // (#) 예외처리
     try{
       // (#) 자바와 통신 후 반환값 받아오기
-      final response = await dio.get("http://192.168.40.34:8080/day04/todos");
+      final response = await dio.get("https://open-bendite-tjoeun-02a1a58d.koyeb.app/day04/todos");
 
       // (#) 반환값을 변수에 대입하기
       final data = response.data;
@@ -58,7 +58,7 @@ class _HomeState extends State<Home>{
   // [*] DELETE : 자바에서 할일 삭제하기
   void todoDelete(id) async{ // 삭제할 PK 키 를 매개변수로 받음
     try{
-      final response = await dio.delete("http://192.168.40.34:8080/day04/todos?id=$id");
+      final response = await dio.delete("https://open-bendite-tjoeun-02a1a58d.koyeb.app/day04/todos?id=$id");
         // 쿼리스트링으로 PK 키 전달
 
       if(response.data == true){

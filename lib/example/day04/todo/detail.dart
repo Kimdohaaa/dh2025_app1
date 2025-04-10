@@ -35,7 +35,7 @@ class _DetailState extends State<Detail>{
     try{
 
       // 매개변수로 전달받은 id 를 쿼리스트링으로 전달
-      final response = await dio.get("http://192.168.40.34:8080/day04/todos/view?id=$id");
+      final response = await dio.get("https://open-bendite-tjoeun-02a1a58d.koyeb.app/day04/todos/view?id=$id");
       final data = response.data;
 
       // 응답받은 결과를 상태변수에 대입
