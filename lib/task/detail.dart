@@ -12,6 +12,7 @@ class Detail extends StatefulWidget{
 // [2] 상태 사용 클래스
 class _DetailState extends State<Detail> {
   TextEditingController bpwdController = TextEditingController();
+
   Map<int, TextEditingController> rpwdController = {};
   TextEditingController getRpwdController(int rno) {
     // Map 의 TextEditingController 값 반환
