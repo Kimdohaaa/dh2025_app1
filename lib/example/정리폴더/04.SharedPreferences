@@ -1,0 +1,28 @@
+[SharedPreferences]
+- 정의 : 앱을 종료했거나 다시 켜도 유지되는 데이터를 저장하기 위한 라이브러리
+* 주로 앱은 개인 소장이므로 종료 시에도 상태유지를 하는 경우가 많음
+- 목적
+    1) 로그인 유지
+    2) 앱 설정
+    3) 간단한 캐시등을 저장(DB 없이 사용)
+- 설치
+    1) https://pub.dev/ -> shared_preferences 라이브러리 검색
+    2) 수업기준 : shared_preferences: ^2.5.3
+    3) pubspec.yaml -> dependencies 에 추가 -> Pub get (!!!tab 키 주의!!!)
+- 사용
+    ※ 사용 전 상단에 import 여부 확인하기 ※
+    1. 값 저장하기 ex) lib/app/member/login.dart 파일에 있음
+        1) 전역 객체 가져오기(!!!SharedPreferences 는 비동기로 동기화 필수!!!)
+        - SharedPreferences 객체명 = await SharedPreferences.getInstance();
+        2) 선언한 전역 객체에 값 저장(!!!SharedPreferences 는 비동기로 동기화 필수!!!)
+        - await 객체명.set타입(키, 값)
+
+    2. 값 불러오기 ex) lib/app/member/info.dart 파일에 있음
+        1) SharedPreferences 전역변수 가져오기(!!!SharedPreferences 는 비동기로 동기화 필수!!!)
+        -  변수명 = await SharedPreferences.getInstance();
+        2) 가져온 SharedPreferences 전역변수 변수에 담기
+        - 변수명 = prefs.getString(키);
+
+    3. 저장된 값 삭제 ex) lib/app/member/info.dart 파일에 있음
+    * 로그아웃 등에서 사용
+        - 변수명.remove(키);

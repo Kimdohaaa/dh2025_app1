@@ -1,6 +1,7 @@
 // signup.dart : 회원가입 페이지 파일
 
 import 'package:dh2025_app1/app/layout/myapp.dart';
+import 'package:dh2025_app1/app/member/login.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -88,7 +89,7 @@ class _SignupState extends State<Signup>{
 
           // [#] 로그인 페이지로 이동 버튼
           TextButton(
-              onPressed: (){},
+              onPressed: () => Login(),
               child: Text("로그인 페이지로 이동")
           )
           ],
