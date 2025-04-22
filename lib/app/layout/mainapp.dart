@@ -19,10 +19,10 @@ class _MainAppState extends State<MainApp>{
   // [1] 페이지 위젯 리스트 선언 : 여러개의 위젯들을 갖는 리스트
   // => Widget : 여러 위젯들을 상속하는 상위 위젯(클래스)
   List<Widget> pages = [
-    Text("홈페이지"),
-    Info(),
-    Login(),
-    Signup()
+    Text("홈 페이지"),
+    Text("게시물1 페이지"),
+    Text("게시물2 페이지"),
+    Info() //Text("내정보 페이지"),
   ];
 
   // [2] 페이지의 상단 제목 리스트 생성

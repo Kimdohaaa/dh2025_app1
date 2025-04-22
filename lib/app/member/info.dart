@@ -1,3 +1,5 @@
+import 'package:dh2025_app1/app/layout/mainapp.dart';
+import 'package:dh2025_app1/app/member/login.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,9 +14,9 @@ class Info extends StatefulWidget{
 class _InfoState extends State<Info>{
   Dio dio = Dio();
 
-  int? mno;
-  String? memail;
-  String? mname;
+  int mno = 0; // 30;
+  String memail = ""; //"qwe@qwe.com";
+  String mname = ""; // "유재석";
 
   // *** SharedPreferences *** //
   // [*] 해당 위젯이 열렸을 때 SharedPreferences를 통해 로그인 여부 확인
@@ -40,9 +42,12 @@ class _InfoState extends State<Info>{
       });
     }else{ // setState 를 통해 로그인 상태 렌더링
       print("비로그인중");
-      setState(() {
-        isLogin = false;
-      });
+
+      Navigator.pushReplacement(
+        context,
+        // MaterialPageRoute(builder: (context) => 이동할위젯명()) ★ 해당 방법 이용 시 이전 페이지로 이동 불가
+        MaterialPageRoute(builder: (context) => Login())
+      );
     }
   }
 
@@ -88,6 +93,12 @@ class _InfoState extends State<Info>{
       prefs.remove("token");
 
       print("로그아웃 성공");
+
+      // 5) 로그아웃 성공 시 메인화면으로 이동 (이전페이지로 이동 불가)
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => MainApp())
+      );
     }catch(e){
       print(e);
     }
@@ -96,6 +107,15 @@ class _InfoState extends State<Info>{
 
   @override
   Widget build(BuildContext context) {
+    // [*] 만약에 로그인 상태가 확인되기 전이라면 대기화면 출력
+    if(isLogin == null){ // 만약에 비로그인이면
+      return Scaffold(
+        body: Center(
+          // CircularProgressIndicator() : 대기화면(로딩화면)을 제공하는 위젯
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
     return Scaffold(
       body: Container(
         margin: EdgeInsets.all(30),
@@ -110,7 +130,6 @@ class _InfoState extends State<Info>{
             Text("회원이름 : $mname"),
             SizedBox(height: 20,),
             ElevatedButton(onPressed: logout, child: Text("로그아웃"))
-            
           ],
         ),
       ),
