@@ -34,6 +34,7 @@ dependencies:
   shared_preferences: ^2.5.3
   # 알림메세지 출력 라이브러리
   fluttertoast: ^8.2.12
+  image_picker: ^1.1.2
 
   # 플러터 SDK 라이브러리 추가
   flutter:

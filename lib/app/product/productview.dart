@@ -1,5 +1,7 @@
+import 'package:dh2025_app1/app/product/productlist.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProductView extends StatefulWidget{
   // [#] 필드 (== 멤버변수)
@@ -10,6 +12,8 @@ class ProductView extends StatefulWidget{
   // ProductView(this.pno);
   // (2) 여러개의 필드를 갖는 생성자({}(중괄호)를 통해 여러개의 매개변수 받기)
   ProductView({this.pno, this.pname});
+
+
 
   @override
   State<StatefulWidget> createState() {
@@ -22,6 +26,9 @@ class _ProductViewState extends State<ProductView>{
   Map<String , dynamic> product = {};
   Dio dio = Dio();
   String baseUrl = "http://192.168.40.34:8080";
+
+  // [#] 작성자를 확인할 변수 선언
+  bool? isOwner = false;
 
   // [#] 생명주기
   @override
@@ -36,11 +43,56 @@ class _ProductViewState extends State<ProductView>{
       final response = await dio.get("$baseUrl/product/view?pno=${widget.pno}");
 
       if(response.data != null) {
+        // (*) 현재 로그인된 회원이 작성한 게시물인지 확인
+        // 1) 토큰 가져오기
+        final prefs = await SharedPreferences.getInstance();
+        final token = prefs.getString('token');
+
+        if( token == null ){
+          setState(() {
+            isOwner = false;
+          });
+        }
+
+        // 2) 해당 토큰의 회원정보 조회
+        dio.options.headers['Authorization'] = token;
+        final response2 = await dio.get("$baseUrl/member/info");
+
+        // 3) 반환받은 회원정보와 게시물의 회원정보가 같으면 상태변수 true 로 변경
+        if(response2.data['email' == response2.data['emaill']] ){
+          setState(() {
+            isOwner = true;
+          });
+        }
+
+
         setState(() {
           product = response.data;
         });
       }
      print(product);
+    }catch(e){
+      print(e);
+    }
+  }
+
+  // [#] 제품 삭제
+  void deleteProduct(int pno) async{
+    try{
+      // 1) 토큰 가져오기
+      final prefs = await SharedPreferences.getInstance();
+      final token = prefs.getString('token');
+
+      dio.options.headers['Authorization'] = token;
+      final response = await dio.delete("$baseUrl/product?pno=$pno");
+
+      if(response.data == true ){
+        print("제품 삭제 성공");
+        Navigator.push(context, MaterialPageRoute(builder: (context) => ProductList()));
+      }else{
+        print("제품삭제 실패");
+      }
+
     }catch(e){
       print(e);
     }
@@ -70,6 +122,7 @@ class _ProductViewState extends State<ProductView>{
       Img = Container(
         height:  300,
         child: ListView.builder(
+          scrollDirection: Axis.horizontal, // 목록 스크롤 반환
           itemCount: images.length,
           itemBuilder : (context, index){
             String imageUrl = "$baseUrl/upload/${images[index]}";
@@ -82,7 +135,8 @@ class _ProductViewState extends State<ProductView>{
       );
     }
 
-    
+
+
     return Scaffold(
       appBar: AppBar(title: Text("제품상세페이지"),),
       // SingleChildScrollView() : 만약 내용이 길어지면 스크롤을 제공하는 위젯
@@ -107,11 +161,25 @@ class _ProductViewState extends State<ProductView>{
               ],
             ),
             SizedBox( height:  10 ,),
-            Text( "판매자: ${ product['memail']}" ) ,
+            Text( "판매자: ${ product['email']}" ) ,
             SizedBox( height:  20 ,),
             Text("제품 설명" , style: TextStyle( fontSize: 20 , fontWeight: FontWeight.bold ),),
             SizedBox( height:  8 ,),
             Text( product['pcontent'] ) ,
+            SizedBox(height: 20,),
+
+            // [*] 현재 로그인된 회원과 해당 게시물을 작성한 회원이 같다면 tnwjd,삭제버튼 활성화
+            if(isOwner != null && isOwner == true)
+              Row(children: [
+                ElevatedButton(
+                    onPressed: (){},
+                    child: Text("수정")
+                ), ElevatedButton(
+                    onPressed: () {deleteProduct(product['pno']);},
+                    child: Text("삭제")
+                ),
+              ],)
+
           ],
         ),
       ) ,

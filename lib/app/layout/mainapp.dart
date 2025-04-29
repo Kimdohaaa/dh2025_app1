@@ -3,6 +3,7 @@
 import 'package:dh2025_app1/app/member/info.dart';
 import 'package:dh2025_app1/app/member/login.dart';
 import 'package:dh2025_app1/app/member/signup.dart';
+import 'package:dh2025_app1/app/product/ProductRegister.dart';
 import 'package:dh2025_app1/app/product/productlist.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class _MainAppState extends State<MainApp>{
   List<Widget> pages = [
     Text("홈 페이지"),
     ProductList(),
-    Text("게시물2 페이지"),
+    ProductRegister(),
     Info() //Text("내정보 페이지"),
   ];
 
@@ -30,7 +31,7 @@ class _MainAppState extends State<MainApp>{
   List<String> pageTitle = [
     '홈',
     '제품정보',
-    '게시물2',
+    '제품등록',
     '내정보'
   ];
 
@@ -90,7 +91,7 @@ class _MainAppState extends State<MainApp>{
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
           BottomNavigationBarItem(icon: Icon(Icons.forum), label: '제품정보'),
-          BottomNavigationBarItem(icon: Icon(Icons.forum), label: '게시물2'),
+          BottomNavigationBarItem(icon: Icon(Icons.forum), label: '제품등록'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: '내정보(회원가입)'),
         ],
       ),
